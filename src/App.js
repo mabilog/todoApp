@@ -4,6 +4,9 @@ import { Button, TextField } from '@material-ui/core'
 import { db } from './firebase_config';
 import firebase from 'firebase';
 
+import Todo from './Todo';
+
+
 function App() {
   const [todoInput, setTodoInput] = useState('');
   const [todos, setTodos] = useState([]);
@@ -14,7 +17,7 @@ function App() {
 
   const addTodo = (e) => {
     e.preventDefault();
-    
+
     db.collection('todos')
       .add({
         inprogress: true,
@@ -57,7 +60,7 @@ function App() {
         type="submit"
       >Add</Button>
       </AddWrapper>
-      {todos.map(todo => <p key={todo.id}>{todo.todo}</p>)}
+      {todos.map(todo => <Todo todo={todo}/>)}
     </AppWrapper>
   );
 }
